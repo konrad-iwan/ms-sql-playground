@@ -20,7 +20,9 @@ SELECT
 	ISNULL(LAG(CTE.netvalue, 1) OVER (ORDER BY year, month),0) AS previousmonth_netvalue,
 	ISNULL(LAG(CTE.grossvalue, 1) OVER (ORDER BY year, month),0) AS previousmonth_grossvalue,
 	ISNULL(CTE.netvalue - LAG(CTE.netvalue, 1) OVER (ORDER BY year, month),0) AS diff_previousmonth_netvalue,
-	ISNULL(CTE.grossvalue - LAG(CTE.grossvalue, 1) OVER (ORDER BY year, month),0) AS diff_previousmonth_grossvalue
+	ISNULL(CTE.grossvalue - LAG(CTE.grossvalue, 1) OVER (ORDER BY year, month),0) AS diff_previousmonth_grossvalue,
+	ISNULL(CTE.netvalue - LEAD(CTE.netvalue, 1) OVER (ORDER BY year, month),0) AS diff_nextmonth_netvalue,
+	ISNULL(CTE.grossvalue - LEAD(CTE.grossvalue, 1) OVER (ORDER BY year, month),0) AS diff_nextmonth_grossvalue
 FROM
 CTE;
 GO
@@ -28,7 +30,7 @@ GO
 SELECT * 
 FROM 
 dbo.tvf_orders_by_months_lag('2025-01-01','2026-01-01');
-GO;
+
 
 
 
