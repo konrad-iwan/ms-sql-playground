@@ -18,5 +18,7 @@ SELECT CTE.*
 FROM
 CTE;
 
+GO 
+
 SELECT * FROM cte_orderNumbers; 
 

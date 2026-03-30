@@ -28,7 +28,6 @@ GO
 SELECT * 
 FROM 
 dbo.tvf_orders_by_months_lag('2025-01-01','2026-01-01');
-GO;
 
 
 

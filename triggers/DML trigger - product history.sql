@@ -1,3 +1,18 @@
+--stworzyc tabelke z historia produktu 
+CREATE TABLE product_history
+(
+	id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	productid INT NOT NULL, 
+	name nvarchar(100) NOT NULL,
+	description nvarchar(max),
+	net decimal(18,2) NOT NULL,
+	gross decimal(18,2) NOT NULL,
+	changedate datetime NOT NULL DEFAULT (GETDATE()),
+	operationtype NVARCHAR(1) NOT NULL,
+	currentuser NVARCHAR(MAX) NOT NULL DEFAULT (CURRENT_USER)
+);
+
+
 --trigger DML
 
 CREATE OR ALTER TRIGGER dbo.tgProduct_ins
@@ -37,19 +52,6 @@ BEGIN
 	deleted;
 END;
 
---stworzyc tabelke z historia produktu 
-CREATE TABLE product_history
-(
-	id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	productid INT NOT NULL, 
-	name nvarchar(100) NOT NULL,
-	description nvarchar(max),
-	net decimal(18,2) NOT NULL,
-	gross decimal(18,2) NOT NULL,
-	changedate datetime NOT NULL DEFAULT (GETDATE()),
-	operationtype NVARCHAR(1) NOT NULL,
-	currentuser NVARCHAR(MAX) NOT NULL DEFAULT (CURRENT_USER)
-);
 
 INSERT INTO product(name, description, net, gross)
 SELECT 'Motrola X88','Produkt z literowk¹',1000,1230;

@@ -15,6 +15,8 @@ CREATE TABLE dbo.DDLLog (
     UserName NVARCHAR(255)
 );
 
+GO 
+
 CREATE TRIGGER [ddl_log_trigger]
 ON DATABASE
 FOR 
